@@ -34,6 +34,8 @@ abstract class FlutterFlowTheme {
 
   late Color bGTextField;
   late Color bGButton;
+  late Color borderColor;
+  late Color lightGray;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -125,6 +127,8 @@ class LightModeTheme extends FlutterFlowTheme {
 
   late Color bGTextField = const Color(0xFFEDF3FA);
   late Color bGButton = const Color(0xFF295264);
+  late Color borderColor = const Color(0xFFBDD1DE);
+  late Color lightGray = const Color(0xFFD3D3D3);
 }
 
 abstract class Typography {

@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'componentes_widget.dart' show ComponentesWidget;
+import 'empty_shopping_list_widget.dart' show EmptyShoppingListWidget;
 import 'package:flutter/material.dart';
 
-class ComponentesModel extends FlutterFlowModel<ComponentesWidget> {
+class EmptyShoppingListModel extends FlutterFlowModel<EmptyShoppingListWidget> {
   /// Initialization and disposal methods.
 
   @override

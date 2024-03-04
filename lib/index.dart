@@ -1,2 +1,7 @@
 // Export pages
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
+export '/pages/features/account/login_screen/login_screen_widget.dart'
+    show LoginScreenWidget;
+export '/pages/features/account/new_account_screen/new_account_screen_widget.dart'
+    show NewAccountScreenWidget;
+export '/pages/features/home/home_screen/home_screen_widget.dart'
+    show HomeScreenWidget;
