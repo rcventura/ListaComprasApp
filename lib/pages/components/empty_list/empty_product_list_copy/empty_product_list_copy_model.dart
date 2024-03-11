@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'empty_shopping_list_widget.dart' show EmptyShoppingListWidget;
+import 'empty_product_list_copy_widget.dart' show EmptyProductListCopyWidget;
 import 'package:flutter/material.dart';
 
-class EmptyShoppingListModel extends FlutterFlowModel<EmptyShoppingListWidget> {
+class EmptyProductListCopyModel
+    extends FlutterFlowModel<EmptyProductListCopyWidget> {
   /// Initialization and disposal methods.
 
   @override

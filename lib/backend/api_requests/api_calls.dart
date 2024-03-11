@@ -10,7 +10,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start Users Group Code
 
 class UsersGroup {
-  static String baseUrl = 'https://x8ki-letl-twmt.n7.xano.io/api:OcQO7HXy/auth';
+  static String baseUrl = 'https://x8ki-letl-twmt.n7.xano.io/api:H1NcPhNd/auth';
   static Map<String, String> headers = {};
   static NewAccountCall newAccountCall = NewAccountCall();
   static GetMeCall getMeCall = GetMeCall();
@@ -122,7 +122,7 @@ class LoginCall {
 /// Start ListShopping Group Code
 
 class ListShoppingGroup {
-  static String baseUrl = 'https://x8ki-letl-twmt.n7.xano.io/api:OcQO7HXy';
+  static String baseUrl = 'https://x8ki-letl-twmt.n7.xano.io/api:H1NcPhNd';
   static Map<String, String> headers = {
     'Accept': 'application/json',
     'Authorization': 'Bearer [authToken]',
@@ -138,7 +138,7 @@ class GetCreatedListByUserCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'GetCreatedListByUser',
-      apiUrl: '${ListShoppingGroup.baseUrl}/listacriada',
+      apiUrl: '${ListShoppingGroup.baseUrl}/createdlist',
       callType: ApiCallType.GET,
       headers: {
         'Accept': 'application/json',
@@ -159,13 +159,156 @@ class GetCreatedListByUserCall {
         response,
         r'''$[:].id''',
       ));
-  String? nomeLista(dynamic response) => castToType<String>(getJsonField(
+  String? nameList(dynamic response) => castToType<String>(getJsonField(
         response,
-        r'''$[:].nomeLista''',
+        r'''$[:].nameList''',
       ));
+  List? itemList(dynamic response) => getJsonField(
+        response,
+        r'''$[:].itemsList''',
+        true,
+      ) as List?;
+  List? itemListDetail(dynamic response) => getJsonField(
+        response,
+        r'''$[:].itemsList[:].itemDetail''',
+        true,
+      ) as List?;
 }
 
 /// End ListShopping Group Code
+
+/// Start Categories Group Code
+
+class CategoriesGroup {
+  static String baseUrl = 'https://x8ki-letl-twmt.n7.xano.io/api:H1NcPhNd';
+  static Map<String, String> headers = {
+    'Authorization': 'Bearer [authToken]',
+  };
+  static GetCategoriesCall getCategoriesCall = GetCategoriesCall();
+  static GetItemsByCategoryCall getItemsByCategoryCall =
+      GetItemsByCategoryCall();
+}
+
+class GetCategoriesCall {
+  Future<ApiCallResponse> call({
+    String? authToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetCategories',
+      apiUrl: '${CategoriesGroup.baseUrl}/categories',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<int>? id(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<String>? nameCategories(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].name_categories''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? pathUrl(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].image.url''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? imagePath(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].image.path''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? image(dynamic response) => getJsonField(
+        response,
+        r'''$[:].image''',
+        true,
+      ) as List?;
+  List<String>? imageAccess(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].image.access''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class GetItemsByCategoryCall {
+  Future<ApiCallResponse> call({
+    int? categoriesId,
+    String? authToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'GetItemsByCategory',
+      apiUrl: '${CategoriesGroup.baseUrl}/itemslists',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer $authToken',
+      },
+      params: {
+        'categories_id': categoriesId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  int? id(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].id''',
+      ));
+  int? categoryID(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$[:].categories_id''',
+      ));
+  List? itemTitle(dynamic response) => getJsonField(
+        response,
+        r'''$[:].itemTitle''',
+        true,
+      ) as List?;
+  List<String>? listaItem(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].itemTitle[:].itemTitle''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+/// End Categories Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;

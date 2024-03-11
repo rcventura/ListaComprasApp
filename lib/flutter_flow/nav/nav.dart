@@ -95,6 +95,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomeScreen',
           path: '/homeScreen',
           builder: (context, params) => const HomeScreenWidget(),
+        ),
+        FFRoute(
+          name: 'ShoppingScreen',
+          path: '/shoppingScreen',
+          builder: (context, params) => const ShoppingScreenWidget(),
+        ),
+        FFRoute(
+          name: 'ProductListScreen',
+          path: '/productListScreen',
+          builder: (context, params) => ProductListScreenWidget(
+            categoryName: params.getParam('categoryName', ParamType.String),
+            categoryID: params.getParam('categoryID', ParamType.int),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
